@@ -2,7 +2,7 @@
 
 The purpose of this repository is to bridge the gap between ML as taught in university courses, and its practical applications in the workforce, research, or broadscale problem solving. Rather than separating techniques by architectural similarity, I outline the broad problem domains (“use cases”) in machine learning and, for each, cover the main families of models or methods that are commonly applied. Each use case serves as an entry point—when you know *what* you want to achieve, you can quickly see which techniques are most appropriate. I feature newer techniques in in ML Cloud Systems and Generative AI not covered in most classrooms.
 
-*Note: for a comprehensive review on Adversarial AI, please see my other repo, {r}[https://github.com/Ananya-Krishna/Adversarial_AI_Attacks](https://github.com/Ananya-Krishna/Adversarial_AI_Attacks)*
+*Note: for a comprehensive review on Adversarial AI, please see my other repo, [https://github.com/Ananya-Krishna/Adversarial_AI_Attacks](https://github.com/Ananya-Krishna/Adversarial_AI_Attacks)*
 _______
 
 # Table of Contents:
