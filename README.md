@@ -1,6 +1,6 @@
 ## Application Focused Machine Learning
 
-The purpose of this repository is to bridge the gap between ML in university courses and practical applications in the workforce, research, or broadscale problem solving. Rather than separating techniques by architectural similarity, I outline the broad problem domains (“use cases”) in machine learning and, for each, cover the main families of models or methods that are commonly applied. Each use case serves as an entry point—when you know *what* you want to achieve, you can quickly see which techniques are most appropriate.
+The purpose of this repository is to bridge the gap between ML as taught in university courses, and its practical applications in the workforce, research, or broadscale problem solving. Rather than separating techniques by architectural similarity, I outline the broad problem domains (“use cases”) in machine learning and, for each, cover the main families of models or methods that are commonly applied. Each use case serves as an entry point—when you know *what* you want to achieve, you can quickly see which techniques are most appropriate. I feature newer techniques in in ML Cloud Systems, Adversarial AI, and Generative AI not covered in most classrooms.
 
 _______
 
