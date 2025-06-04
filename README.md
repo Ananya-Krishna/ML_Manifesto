@@ -1,7 +1,8 @@
 ## Application Focused Machine Learning
 
-The purpose of this repository is to bridge the gap between ML as taught in university courses, and its practical applications in the workforce, research, or broadscale problem solving. Rather than separating techniques by architectural similarity, I outline the broad problem domains (“use cases”) in machine learning and, for each, cover the main families of models or methods that are commonly applied. Each use case serves as an entry point—when you know *what* you want to achieve, you can quickly see which techniques are most appropriate. I feature newer techniques in in ML Cloud Systems, Adversarial AI, and Generative AI not covered in most classrooms.
+The purpose of this repository is to bridge the gap between ML as taught in university courses, and its practical applications in the workforce, research, or broadscale problem solving. Rather than separating techniques by architectural similarity, I outline the broad problem domains (“use cases”) in machine learning and, for each, cover the main families of models or methods that are commonly applied. Each use case serves as an entry point—when you know *what* you want to achieve, you can quickly see which techniques are most appropriate. I feature newer techniques in in ML Cloud Systems and Generative AI not covered in most classrooms.
 
+*Note: for a comprehensive review on Adversarial AI, please see my other repo, Ananya-Krishna/Adversarial_AI_Attacks*
 _______
 
 # Table of Contents:
@@ -132,23 +133,7 @@ _______
 
 ---
 
-### 8. Adversarial Techniques (Applied)
-
-- **Attacks**  
-  - *Fast Gradient Sign Method (FGSM), Projected Gradient Descent (PGD), DeepFool* — white-box gradient-based attacks on image models.  
-  - *Carlini–Wagner (CW) Attack* — optimize perturbations under various norms to evade defenses.  
-  - *Textual Attacks & Jailbreaks* — techniques like HotFlip or token-level manipulations to subvert NLP models.  
-  - *Graph Attacks (e.g., Nettack)* — perturb node features or edges to fool graph classifiers.
-
-- **Defenses**  
-  - *Adversarial Training* — augment training data with adversarial examples to increase robustness.  
-  - *Gradient Masking / Input Preprocessing* — apply transformations (e.g., JPEG compression, random noise) to mitigate perturbations.  
-  - *Certified Defenses (Randomized Smoothing)* — provide provable guarantees about model robustness under bounded perturbations.  
-  - *Trojan / Backdoor Detection & Removal* — identify and remove malicious triggers embedded during training.
-
----
-
-### 9. ML Cloud Systems & Production
+### 8. ML Cloud Systems & Production
 
 - **Model Deployment & Serving**  
   - *TensorFlow Serving, TorchServe, NVIDIA Triton Inference Server* — host and serve models at scale with REST or gRPC endpoints.  
@@ -168,7 +153,7 @@ _______
 
 ---
 
-### 10. Loss Functions & Optimizers (Applied Reference)
+### 9. Loss Functions & Optimizers (Applied Reference)
 
 - **Regression Losses**  
   - *Mean Squared Error (MSE), Mean Absolute Error (MAE), Huber Loss* — trade-offs between sensitivity to outliers and smoothness.  
