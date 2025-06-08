@@ -1,0 +1,74 @@
+- **First-Order vs. Second-Order Optimization Methods**
+  - **First-Order Methods**  
+    - *Definition*: Rely exclusively on first derivatives (gradients ∇𝑓(θ)) of the loss function to guide parameter updates.  
+    - *Examples*:  
+      - **SGD (Stochastic Gradient Descent)**:  
+        \[
+          θ_{t+1} = θ_{t} - η \,\nabla_θ \mathcal{L}(θ_{t}, x_t)
+        \]  
+      - **Momentum / Nesterov Accelerated Gradient**:  
+        \[
+          v_{t+1} = μ\,v_{t} + η \,\nabla_θ \mathcal{L}(θ_{t}), \quad
+          θ_{t+1} = θ_{t} - v_{t+1}
+        \]  
+      - **Adam / AdamW / RMSProp / Adagrad**:  
+        \[
+          m_{t+1} = β_1\,m_t + (1-β_1)\,\nabla_θ \mathcal{L}(θ_t), 
+          \quad
+          v_{t+1} = β_2\,v_t + (1-β_2)\,(\nabla_θ \mathcal{L}(θ_t))^2
+        \]
+        \[
+          \hat{m}_{t+1} = \frac{m_{t+1}}{1 - β_1^t}, \quad
+          \hat{v}_{t+1} = \frac{v_{t+1}}{1 - β_2^t}, \quad
+          θ_{t+1} = θ_t - η \,\frac{\hat{m}_{t+1}}{\sqrt{\hat{v}_{t+1}} + ε}
+        \]
+    - *Advantages*:  
+      - Low per-iteration cost (only need gradients, no Hessians).  
+      - Scales to large datasets and high-dimensional parameter spaces.  
+      - Adaptive methods (Adam, RMSProp) can converge faster in practice without extensive LR tuning.  
+    - *Limitations*:  
+      - May converge slowly near saddle points or flat regions (“zig-zagging”).  
+      - Sensitive to learning‐rate schedules; tuning can be time-consuming.  
+      - Cannot leverage curvature information explicitly, so may require more iterations on ill-conditioned problems.
+
+  - **Second-Order Methods**  
+    - *Definition*: Use both first derivatives (gradients) and second derivatives (Hessian ∇²𝑓(θ) or approximations) to update parameters, effectively modeling local curvature.  
+    - *Examples*:  
+      - **Newton’s Method**:  
+        \[
+          θ_{t+1} = θ_{t} - \bigl[∇^2_θ \,\mathcal{L}(θ_{t})\bigr]^{-1} \,∇_θ \mathcal{L}(θ_{t})
+        \]
+      - **Quasi-Newton Methods**  
+        - *BFGS / L-BFGS*: build an approximate inverse Hessian \(H_t ≈ (∇^2 \mathcal{L}(θ_t))^{-1}\) from gradient differences.  
+        - Update rule (for L-BFGS with limited memory):  
+          \[
+            θ_{t+1} = θ_t - η\,H_t \,∇_θ \mathcal{L}(θ_t)
+          \]
+      - **Conjugate Gradient (CG)**: solve \(H\,p = -g\) for the search direction \(p\) without fully inverting Hessian, then set
+        \[
+          θ_{t+1} = θ_t + η\,p
+        \]
+    - *Advantages*:  
+      - Faster convergence in well-conditioned, moderate-scale problems (fewer iterations to reach optimum).  
+      - Incorporates curvature, so can “jump” directly to a minimum (quadratic convergence near optimum).  
+    - *Limitations*:  
+      - High per-iteration cost: storing or inverting a full Hessian is \(O(n^2)\) memory and \(O(n^3)\) compute for \(n\) parameters.  
+      - In deep learning, \(n\) is often millions—impractical to compute or store exact Hessian.  
+      - Quasi-Newton and CG alleviate some cost but still require storing gradient history or performing multiple Hessian–vector products.  
+      - More sensitive to noisy or non‐convex losses; may diverge if curvature estimate is poor.
+
+- **Hybrid “Quasi‐Second‐Order” in Deep Learning**
+  - *K-FAC (Kronecker-Factored Approximate Curvature)* — approximates Fisher information matrix in a block-wise fashion for faster natural-gradient updates.  
+  - *L-BFGS on Small Fine‐Tuning Tasks* — sometimes used when dataset is small or network head is shallow.
+
+- **Selecting Optimizers in Practice (Applied Guidance)**
+  - **When to Use First‐Order**  
+    - Training large CNNs or Transformers on millions of samples.  
+    - Rapid prototyping or when compute resources are limited.  
+    - Tasks where adaptive methods (Adam/AdamW) reliably converge without extensive tuning.
+  - **When to Consider (Quasi-)Second‐Order**  
+    - Fine‐tuning a small portion of a pretrained model (e.g., last layer) where parameter count is moderate.  
+    - Convex subproblems (e.g., logistic regression on top of fixed features).  
+    - Research experiments that specifically analyze curvature effects or require high-precision solutions.
+
+---
